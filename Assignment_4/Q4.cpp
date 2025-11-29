@@ -1,30 +1,30 @@
 #include <iostream>
-#include <string>
 #include <queue>
+#include <unordered_map>
 using namespace std;
 
-void firstNonRepeating(string s){
+void firstNonRepeating(string s) {
     queue<char> q;
-    int freq[256]={0};
-    for (char ch : s){
-        if (ch == ' ') continue;
-        freq[(unsigned char) ch]++;
+    unordered_map<char, int> freq;
+
+    for (char ch : s) {
+        freq[ch]++;
         q.push(ch);
-        while (!q.empty()&&freq[(unsigned char) q.front()]>1) q.pop();
-        if(q.empty()){
-            cout<<"-1 ";
-        }else{
-            cout<<q.front()<<" ";
+
+        while (!q.empty() && freq[q.front()] > 1) {
+            q.pop();
         }
+
+        if (q.empty()) cout << -1 << " ";
+        else cout << q.front() << " ";
     }
-    cout<<endl;
+    cout << endl;
 }
 
-
-int main(){
-    string str;
-    cout<<"Enter the string.";
-    getline(cin,str);
-    firstNonRepeating(str);
+int main() {
+    string input;
+    cout << "Enter string: ";
+    cin >> input;
+    firstNonRepeating(input);
     return 0;
 }
