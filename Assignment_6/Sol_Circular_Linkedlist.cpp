@@ -63,7 +63,94 @@ class Linkedlist{
             temp = temp->next;
         } while (temp != head);
     }
-    
+    void insert_before(int num, int ref){
+        if (!head){
+            cout<<"Error: Linked list empty."<<endl;
+            return;
+        }
+
+        if (head->data == ref) {
+            insert_at_beginning(num);
+            return;
+        }
+
+        Node* temp = head;
+
+        do{
+            if (temp->next->data == ref){
+                Node* newNode = new Node(num);
+                newNode->next = temp->next;
+                temp->next = newNode;
+                return;
+            }
+            temp=temp->next;
+        }while(temp->next != head);
+
+        cout<<"Error: Reference node not found."<<endl;
+    }
+    void delete_from_beginning(){
+        if (!head){
+            cout<<"Error: Linked list empty."<<endl;
+            return;
+        }
+
+        Node* temp = head;
+        if (head->next == head){
+            delete temp;
+            head = nullptr;
+            return;
+        }
+
+        while(temp->next != head) temp = temp->next;
+        head = head->next;
+        delete temp->next;
+        temp->next = head;
+    }
+    void delete_from_end(){
+        if (!head){
+            cout<<"Error: Linked list empty."<<endl;
+            return;
+        }
+
+        Node* temp = head;
+        if (head->next == head){
+            delete temp;
+            head = nullptr;
+            return;
+        }
+        
+        while (temp->next->next != head) temp = temp->next;
+        delete temp->next;
+        temp->next = head;
+    }
+    void delete_node(int ref){
+        if (!head){
+            cout<<"Error: Linked list empty."<<endl;
+            return;
+        }
+
+        if (head->data == ref){
+            delete_from_beginning();
+            return;
+        }
+        Node* temp = head;
+        do {
+            if (temp->next->data == ref){
+                if (temp->next == head) {
+                    delete_from_end();
+                    return;
+                }
+                Node* to_delete = temp->next;
+                temp->next = to_delete->next;
+                delete to_delete; 
+                return;
+            }
+            temp = temp->next;
+        }while(temp != head);
+
+        
+        cout<<"Error: reference node not found."<<endl;
+    }
 };
 
 int main(){
