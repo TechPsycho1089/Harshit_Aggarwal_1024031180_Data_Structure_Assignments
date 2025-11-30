@@ -46,6 +46,7 @@ class Linkedlist{
             temp=temp->next;
         }while(temp->next != head);
         temp->next = newNode;
+        newNode->next = head;
     }
     void insert_after(int num,int ref){
         if (!head){
@@ -166,6 +167,19 @@ class Linkedlist{
         }while(temp!=head);
         cout<<"Error: Reference not found."<<endl;
         return -1;
+    }
+    void display(){
+        if (!head){
+            cout<<"Error: Linked list is empty."<<endl;
+            return;
+        }
+        cout<<"Head";
+        Node* temp = head;
+        do{
+            cout<<" -> "<<temp->data;
+            temp = temp->next;
+        } while (temp != head);
+        cout<<" -> "<<head->data<<endl;
     }
 };
 
