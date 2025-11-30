@@ -189,6 +189,25 @@ class Linkedlist{
         cout<<"Size of the linked list is "<<count<<endl;
         return count;
     }
+    bool palindrome check(){
+        if (!head) {
+            cout<<"Error: Linked list empty."<<endl
+            return false;
+        }
+        Node* left = head;
+        Node* right = head;
+
+        while(right->next) right = right->next;
+
+        while(left != right && left->prev != right){
+            if (left-data != right->data) return false;
+
+            left = left->next;
+            right = right->prev;
+        }
+        
+        return true;
+    }
 };
 
 
