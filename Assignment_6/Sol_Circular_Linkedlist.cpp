@@ -195,6 +195,26 @@ class Linkedlist{
         cout<<"Size of the linked list is "<<count<<endl;
         return count;
     }
+    bool check_circular_list() {
+        if (!head) {
+            cout << "Error: linked list empty." << endl;
+            return false;
+        }
+
+        Node* temp = head->next;
+
+        while (temp != nullptr && temp != head) {
+            temp = temp->next;
+        }
+
+        if (temp == head) {
+            cout << "It is a circular linked list." << endl;
+            return true;
+        }
+
+        cout << "It is NOT a circular linked list." << endl;
+        return false;
+    }
 };
 
 int main() {
