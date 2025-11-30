@@ -141,6 +141,40 @@ class Linkedlist{
             if(temp->next) temp->next->prev = temp->prev;      //if statement for checking if temp in not last node.
         }
     }
+    int search(int ref){
+        if (!head){
+            cout<<"Error: Linked list empty."<<endl;
+            return -1;
+        }
+
+        int count = 0;
+        Node* temp = head;
+
+        while(temp && temp->data != ref){ 
+            temp = temp->next;
+            count++;
+        }
+
+        if (temp){
+            cout<<"Node found at index "<<count<<endl;
+            return count;
+        }
+
+        cout<<"Error: Node not found."<<endl;
+        return -1;
+    }
+    void display(){
+        cout<<"head";
+        
+        Node* temp = head;
+
+        while(temp){
+            cout<<" -> "<<temp->data;
+            temp = temp->next;
+        }
+
+        cout<<" -> NULL"<<endl;
+    }
 };
 
 
@@ -157,7 +191,9 @@ int main() {
         cout << "5. Delete from beginning\n";
         cout << "6. Delete from end\n";
         cout << "7. Delete a specific node\n";
-        cout << "8. Exit\n";
+        cout << "8. Search a node\n";
+        cout << "9. Display list\n";
+        cout << "10. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -206,7 +242,18 @@ int main() {
                 break;
 
             case 8:
-                cout << "Exiting..." << endl;
+                cout << "Enter value to search: ";
+                cin >> ref;
+                list.search(ref);
+                break;
+
+            case 9:
+                cout << "Current list: ";
+                list.display();
+                break;
+
+            case 10:
+                cout << "Exiting program..." << endl;
                 return 0;
 
             default:
@@ -214,4 +261,3 @@ int main() {
         }
     }
 }
-
