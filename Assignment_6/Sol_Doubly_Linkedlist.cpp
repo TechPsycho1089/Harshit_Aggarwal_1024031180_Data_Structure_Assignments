@@ -175,6 +175,20 @@ class Linkedlist{
 
         cout<<" -> NULL"<<endl;
     }
+    int get_size(){
+        if (!head){
+            cout<<"Size of the linked list is zero."<<endl;
+            return 0;
+        }
+        int count = 0;
+        Node* temp = head;
+        while(temp){
+            temp=temp->next;
+            count++;
+        }
+        cout<<"Size of the linked list is "<<count<<endl;
+        return count;
+    }
 };
 
 
