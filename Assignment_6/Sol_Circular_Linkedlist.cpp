@@ -147,13 +147,107 @@ class Linkedlist{
             }
             temp = temp->next;
         }while(temp != head);
-
-        
         cout<<"Error: reference node not found."<<endl;
+    }
+    int search(int ref){
+        if (!head){
+            cout<<"Error: Linked list empty."<<endl;
+            return -1;
+        }
+        int count = 1;
+        Node* temp = head;
+        do{
+            if (temp->data == ref){
+                cout<<"Reference node found at index "<<count<<endl;
+                return count;
+            }
+            count++;
+            temp = temp->next;
+        }while(temp!=head);
+        cout<<"Error: Reference not found."<<endl;
+        return -1;
     }
 };
 
-int main(){
+int main() {
+    Linkedlist list;
+    int choice, num, ref;
 
-    return 0;
+    while (true) {
+        cout << "\n------- CIRCULAR LINKED LIST MENU -------\n";
+        cout << "1. Insert at beginning\n";
+        cout << "2. Insert at end\n";
+        cout << "3. Insert after a node\n";
+        cout << "4. Insert before a node\n";
+        cout << "5. Delete from beginning\n";
+        cout << "6. Delete from end\n";
+        cout << "7. Delete a specific node\n";
+        cout << "8. Search a value\n";
+        cout << "9. Display list\n";
+        cout << "10. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+
+            case 1:
+                cout << "Enter value: ";
+                cin >> num;
+                list.insert_at_beginning(num);
+                break;
+
+            case 2:
+                cout << "Enter value: ";
+                cin >> num;
+                list.insert_at_end(num);
+                break;
+
+            case 3:
+                cout << "Enter value to insert: ";
+                cin >> num;
+                cout << "Insert after which value? ";
+                cin >> ref;
+                list.insert_after(num, ref);
+                break;
+
+            case 4:
+                cout << "Enter value to insert: ";
+                cin >> num;
+                cout << "Insert before which value? ";
+                cin >> ref;
+                list.insert_before(num, ref);
+                break;
+
+            case 5:
+                list.delete_from_beginning();
+                break;
+
+            case 6:
+                list.delete_from_end();
+                break;
+
+            case 7:
+                cout << "Enter value to delete: ";
+                cin >> ref;
+                list.delete_node(ref);
+                break;
+
+            case 8:
+                cout << "Enter value to search: ";
+                cin >> ref;
+                list.search(ref);
+                break;
+
+            case 9:
+                list.display();
+                break;
+
+            case 10:
+                cout << "Exiting..." << endl;
+                return 0;
+
+            default:
+                cout << "Invalid choice. Try again." << endl;
+        }
+    }
 }
